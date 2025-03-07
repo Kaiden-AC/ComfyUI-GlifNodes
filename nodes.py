@@ -89,8 +89,8 @@ def get_lora_from_url(url: str):
 
         lora_path = hf_hub_download(
             repo_id=repo_id.strip(),
-            subfolder=subfolder,
             filename=filename.strip(),
+            subfolder=subfolder,
             cache_dir=find_or_create_cache(),
         )
     elif "civitai.com" in url:
@@ -334,10 +334,10 @@ class HFHubLoraLoader:
 
         lora_path = hf_hub_download(
             repo_id=repo_id.strip(),
+            filename=filename.strip(),
             subfolder=None
             if subfolder is None or subfolder.strip() == ""
             else subfolder.strip(),
-            filename=filename.strip(),
             cache_dir=find_or_create_cache(),
         )
 
@@ -391,11 +391,11 @@ class HFHubEmbeddingLoader:
     ):
         hf_hub_download(
             repo_id=repo_id.strip(),
+            filename=filename.strip(),
             subfolder=None
             if subfolder is None or subfolder.strip() == ""
             else subfolder.strip(),
-            filename=filename.strip(),
-            local_dir=folder_paths.get_folder_paths("embeddings")[0],
+            cache_dir=folder_paths.get_folder_paths("embeddings")[0],
         )
 
         return (clip,)
